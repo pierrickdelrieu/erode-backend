@@ -1,4 +1,4 @@
-const dotenv = require('dotenv')
+require('dotenv').config;
 const jwt = require('jsonwebtoken');
 const auth = require("./middleware/auth.js");
 const express = require('express');
@@ -106,8 +106,6 @@ sequelize.sync()
 
         app.listen(port, () => {
         console.log(`Server started on port ${port}`)
-        dotenv.config('./exemple.env')
-        process.env['TOKEN_KEY'] = 'very_secret_name_erode_name_ahah'
         console.log(process.env)
         });
     });
