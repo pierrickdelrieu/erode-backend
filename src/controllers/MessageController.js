@@ -16,6 +16,15 @@ function creatingRsaKeys(){
 
 async function decypherMessage(contentEnciphered,tagcode){
     const childPython = spawn('python3', ['.//CipherAlgo//decipher-obf.py', contentEnciphered.toString(), tagcode]);   
+
+    childPython.stderr.on('data', (data) => {
+        console.log(`les erreurs : ${data}`)
+    });
+    
+    childPython.on('close', (code) => {
+        console.log(`child process exited with code ${code}`)
+    });
+    
     return new Promise((resolve) => {
         childPython.stdout.on('data', (data) => {
             return resolve(data.toString());
@@ -152,9 +161,10 @@ module.exports= {
                         id_message: req.body.id_message
                     }
                 })
-                // console.log("messages : " + messages)
+                console.log("messages : " + messages)
                 let messageReturn = null
                 const contentDecipheredRsa = privateKey.importKey(messages.privateKey).decrypt(messages.content,"utf8")
+                console.log("messages : " + messages)
                 await decypherMessage(contentDecipheredRsa,userJSON.tagcode).then((message) => {
 
                     console.log("message 1 : " + message)
