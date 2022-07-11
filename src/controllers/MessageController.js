@@ -15,7 +15,7 @@ function creatingRsaKeys(){
 
 
 async function decypherMessage(contentEnciphered,tagcode){
-    const childPython = spawn('python3', ['..//..//CipherAlgo//decipher-obf.py', contentEnciphered.toString(), tagcode]);   
+    const childPython = spawn('python3', ['.//CipherAlgo//decipher-obf.py', contentEnciphered.toString(), tagcode]);   
     return new Promise((resolve) => {
         childPython.stdout.on('data', (data) => {
             return resolve(data.toString());
