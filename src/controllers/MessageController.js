@@ -152,19 +152,24 @@ module.exports= {
                         id_message: req.body.id_message
                     }
                 })
-                console.log("messages : " + messages)
+                // console.log("messages : " + messages)
                 let messageReturn = null
                 const contentDecipheredRsa = privateKey.importKey(messages.privateKey).decrypt(messages.content,"utf8")
                 await decypherMessage(contentDecipheredRsa,userJSON.tagcode).then((message) => {
+
+                    console.log("message 1 : " + message)
 
                     if(message){
                         //We remove the final characters which are returned by our enciphering algoritm
                         message = message.replace('\r','');
                         message = message.replace('\n','');
 
+                        console.log("message 2 : " + message)
+
                         
 
                         if (messages.timeDelete >= moment.utc().local()){
+                            console.log("message 3 : " + message)
                             contentReturn = "Success"
                             messageReturn = {
                                 fromUsername: messages.fromUsername,
