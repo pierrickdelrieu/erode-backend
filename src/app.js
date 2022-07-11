@@ -18,7 +18,7 @@ const schedule = require("node-schedule");
 const app = express();
 
 const corsOptions = {
-    origin: 'http://localhost:3000'
+    origin: 'https://erode.pierrickdelrieu.me'
 }
   
 app.use(cors(corsOptions))
@@ -106,6 +106,6 @@ sequelize.sync()
 
         app.listen(port, () => {
         console.log(`Server started on port ${port}`)
-        console.log(process.env)
+        // console.log(process.env)
         });
     });
