@@ -25,7 +25,7 @@ async function decypherMessage(contentEnciphered,tagcode){
 
 function cypherMessage(content,tagcode){
     console.log("content : ",content);
-    const childPython = spawn('python3', ['../../CipherAlgo/cipher-obf.py', content.toString(), tagcode]);
+    const childPython = spawn('python3', ['..//CipherAlgo//cipher-obf.py', content.toString(), tagcode]);
     //We create a new Promise because we have to wait for the result to keep our request
     childPython.stderr.on('data', (data) => {
         console.log(`les erreurs : ${data}`)
