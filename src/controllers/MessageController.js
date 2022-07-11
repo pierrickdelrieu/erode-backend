@@ -24,7 +24,7 @@ async function decypherMessage(contentEnciphered,tagcode){
 }
 
 function cypherMessage(content,tagcode){
-    console.log("content : ",content);
+    // console.log("content : ",content);
     const childPython = spawn('python3', ['..\\CipherAlgo\\cipher-obf.py', content.toString(), tagcode]);
     //We create a new Promise because we have to wait for the result to keep our request
     childPython.stderr.on('data', (data) => {
@@ -36,7 +36,7 @@ function cypherMessage(content,tagcode){
     });
     return new Promise((resolve) => {
         childPython.stdout.on('data', (data) => {
-            console.log("data : ",data.toString());
+            // console.log("data : ",data.toString());
             return resolve(data.toString());
         });    
     })
@@ -47,7 +47,7 @@ module.exports= {
     async sendMessage(req,res){
         try{
             const {token,content,usernameTarget,tagcodeTarget, time} = req.body;
-            console.log(req.body);
+            // console.log(req.body);
             const username = req.user.username;
             const tagcode = req.user.tagcode;
             //Vérifier que username/tagcode et usernameTarget/tagcodeTarget ne sont pas les mêmes.
@@ -70,7 +70,7 @@ module.exports= {
                         tagcode: tagcodeTarget
                     }
                 })
-                console.log(user);
+                // console.log(user);
                 if(userTarget){
                     const userTargetJSON = userTarget.toJSON();
                     let message_chiffre;
@@ -79,7 +79,7 @@ module.exports= {
                         
                         message_chiffre = cypherMessage(content,userTargetJSON.tagcode).then((message) => {
                             if(message){
-                                console.log("message chiffré : ",message);
+                                // console.log("message chiffré : ",message);
                                 //We're creating a pair of RSA key for the message to send
                                 const keys = creatingRsaKeys();
                                 let publicKey = new rsa();
@@ -203,13 +203,13 @@ module.exports= {
     async deleteMessage(req,res){
         try{
             const {token,id_message} = req.body;
-            console.log(req.body);
+            // console.log(req.body);
             await Message.findOne({
                 where: {
                     id_message: id_message
                 }
             }).then((message) => {
-                console.log(message);
+                // console.log(message);
                 if(message){
                     messageJson = message.toJSON();
                     //If the message we're seeking to delete belongs to the user who read it

@@ -29,7 +29,6 @@ module.exports = {
                 //Variable in which we'll store the changed time
                 let hour_created_changed = 0;
                 let hour_deleted_changed = 0;
-                console.log("utc_user : ",utc_user);
                 const changing = moment().add({
                     "hours": 24
                 })
@@ -44,19 +43,19 @@ module.exports = {
                         /*We change the hour at which the message has been created
                         according to the user's utc*/
 
-                        console.log("difference : ",)
+                        // console.log("difference : ",)
 
                         hour_created_changed = moment(messages[index].createdAt).utcOffset(utc_user);
                         /*We change the hour at which the message will be deleted
                         according to the user's utc*/
                         hour_deleted_changed = moment(messages[index].timeDelete).utcOffset(utc_user);
                         
-                        console.log("messges created : ",moment(hour_created_changed))
-                        console.log("messges created : ",moment(hour_deleted_changed))
-                        console.log("messages id : ",messages[index].id_message)
+                        // console.log("messges created : ",moment(hour_created_changed))
+                        // console.log("messges created : ",moment(hour_deleted_changed))
+                        // console.log("messages id : ",messages[index].id_message)
                         let message_index = messages[index].id_message
-                        console.log("fzejifez : ",moment.utc(hour_created_changed).toDate())
-                        console.log("fzejifez : ",hour_created_changed.utcOffset())
+                        // console.log("fzejifez : ",moment.utc(hour_created_changed).toDate())
+                        // console.log("fzejifez : ",hour_created_changed.utcOffset())
 
                         //We update the same message with the new values
                         await Message.update({

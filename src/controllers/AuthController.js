@@ -376,9 +376,7 @@ module.exports = {
     async twoFADisable (req, res) {
         try{
             const userId = req.user.id_user;
-            console.log(userId);
             const usertwoFACode  = req.body.usertwoFACode;
-            console.log(usertwoFACode);
             const user = await User.findOne({
                 where: {
                     id_user: userId

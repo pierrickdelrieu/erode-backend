@@ -81,7 +81,7 @@ module.exports = {
                 if(user){
                     const userJson = user.toJSON();
                     const token = jwtSignUser(userJson);
-                    console.log("token : ",token);
+                    // console.log("token : ",token);
                     if(token){
                         User.update({
                             token: token,
