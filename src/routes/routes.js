@@ -8,7 +8,7 @@ const Logout = require("../controllers/LogoutController.js");
 const verifyToken = require("../middleware/auth.js");
 
 module.exports = (app) => {
-    app.post('/register', AuthController.register);
+    // app.post('/register', AuthController.register);
     app.post('/login', AuthController.login);
     app.post('/deleteUser', verifyToken, DeleteUserController.delUser);
     app.post('/2fa/generate',verifyToken,AuthController.twoFAGenerate);
