@@ -18,7 +18,8 @@ const schedule = require("node-schedule");
 const app = express();
 
 const corsOptions = {
-    origin: 'https://erode.pierrickdelrieu.me'
+    // origin: 'https://erode.pierrickdelrieu.me'
+    origin: '*'
 }
   
 app.use(cors(corsOptions))
