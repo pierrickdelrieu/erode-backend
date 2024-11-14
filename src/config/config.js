@@ -20,7 +20,7 @@
         password: process.env.PASS_DB ||'3e92CPa*aKko', /* You have to enter your database password */
         options: {
             dialect: process.env.DIALECT || 'mysql',
-            host: process.env.HOST || 'delrieu.synology.me',
+            host: process.env.HOST,
             port: 3307
         }
     },
